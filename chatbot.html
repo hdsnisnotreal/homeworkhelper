@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework Helper by: hdsnisnotreal</title>
+    <style>
+        /* Add your CSS styles here to match the look of your site */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        #chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+        #chat-box {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        #user-input {
+            width: 100%;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="chat-box">
+            <p>Welcome to the Homework Help Chatbot. How can I assist you today?</p>
+        </div>
+        <input type="text" id="user-input" placeholder="Type your question...">
+    </div>
+
+    <script>
+        const chatBox = document.getElementById('chat-box');
+        const userInput = document.getElementById('user-input');
+
+        userInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                const userMessage = userInput.value;
+                userInput.value = '';
+                appendMessage('You', userMessage);
+                // You can implement logic here to process the user's input and generate a response.
+                // For simplicity, let's just echo the user's message as a response.
+                setTimeout(() => appendMessage('Chatbot', userMessage), 1000);
+            }
+        });
+
+        function appendMessage(sender, message) {
+            const messageElement = document.createElement('p');
+            messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom of the chat box
+        }
+    </script>
+</body>
+</html>
