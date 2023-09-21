@@ -1,34 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homework Helper by: hdsnisnotreal</title>
-    <style>
-        /* Add your CSS styles here to match the look of your site */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-        }
-        #chat-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            padding: 20px;
-        }
-        #chat-box {
-            height: 300px;
-            overflow-y: scroll;
-            border: 1px solid #ddd;
-            padding: 10px;
-        }
-        #user-input {
-            width: 100%;
-            padding: 10px;
-        }
-    </style>
+    <!-- Add your meta tags, title, and CSS styles here -->
 </head>
 <body>
     <div id="chat-container">
@@ -47,9 +20,10 @@
                 const userMessage = userInput.value;
                 userInput.value = '';
                 appendMessage('You', userMessage);
-                // You can implement logic here to process the user's input and generate a response.
-                // For simplicity, let's just echo the user's message as a response.
-                setTimeout(() => appendMessage('Chatbot', userMessage), 1000);
+
+                // Process the user's input and generate a response
+                const botResponse = generateResponse(userMessage);
+                setTimeout(() => appendMessage('Chatbot', botResponse), 1000);
             }
         });
 
@@ -58,6 +32,20 @@
             messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
             chatBox.appendChild(messageElement);
             chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom of the chat box
+        }
+
+        function generateResponse(userMessage) {
+            const lowerCaseMessage = userMessage.toLowerCase();
+
+            if (lowerCaseMessage.includes('math')) {
+                return 'Sure, I can help you with math. What specific math problem do you have?';
+            } else if (lowerCaseMessage.includes('science')) {
+                return 'Of course! What science topic are you studying?';
+            } else if (lowerCaseMessage.includes('history')) {
+                return 'I can assist you with history questions. What period or event are you interested in?';
+            } else {
+                return 'I'm sorry, I don't have information on that topic. Please ask another question.';
+            }
         }
     </script>
 </body>
